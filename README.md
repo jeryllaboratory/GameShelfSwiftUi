@@ -1,10 +1,31 @@
 # GameShelfSwiftUi
 
+[![Codemagic build status](https://api.codemagic.io/apps/6a2947c639f428fbd72b37dc/ios-swiftui-debug/status_badge.svg)](https://codemagic.io/app/6a2947c639f428fbd72b37dc)
+
 GameShelfSwiftUi adalah aplikasi iOS katalog game berbasis **SwiftUI**. Aplikasi ini digunakan untuk menampilkan daftar game, melihat detail game, menyimpan game favorit, dan menampilkan halaman About/Profile.
 
 Project ini dibuat untuk submission akhir dengan fokus pada **Clean Architecture**, **Manual Dependency Injection**, **Reactive Programming menggunakan Combine**, **SwiftData** untuk penyimpanan favorite lokal, **Alamofire** untuk networking, **Swift Package Manager Modularization**, **XCTest**, **SwiftLint**, dan **Codemagic CI**.
 
 Project sudah dipisahkan menjadi beberapa Swift Package module. Module `GameShelfCommon` sudah dipublish sebagai remote Swift Package dan digunakan melalui Swift Package Manager.
+
+---
+
+## Build Evidence
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="50%">
+        <strong>Build Overview</strong><br />
+        <img src="attach/build-overview.png" alt="Codemagic build overview" width="100%" />
+      </td>
+      <td align="center" width="50%">
+        <strong>Build Result</strong><br />
+        <img src="attach/build.png" alt="Codemagic build result" width="100%" />
+      </td>
+    </tr>
+  </table>
+</div>
 
 ---
 
@@ -345,3 +366,9 @@ Latest Codemagic build: Passed
 | CI                   |     ✅ | Build terakhir Codemagic sudah berhasil.                                 |
 | Wireframe/Mockup     |     ✅ | Mockup referensi dan dokumentasi disediakan.                             |
 | Module Diagram       |     ✅ | Diagram hubungan module dan arah dependency sudah didokumentasikan.      |
+
+---
+
+## 19. Author
+
+**Jery I D Lenas**
