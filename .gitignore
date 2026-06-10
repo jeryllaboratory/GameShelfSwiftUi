@@ -1,0 +1,39 @@
+# macOS
+.DS_Store
+
+# Xcode
+DerivedData/
+build/
+*.xcuserstate
+xcuserdata/
+*.moved-aside
+*.xcscmblueprint
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Archives and reports
+*.xcarchive
+*.xcresult
+*.ipa
+
+# Fastlane / CI generated output
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/
+
+# CocoaPods / Carthage if accidentally added later
+Pods/
+Carthage/Build/
+
+# Logs
+*.log
+
+
+
+# Nested remote Swift package working copies
+# Prevent the main project repository from treating GameShelfCommon as an embedded Git repository.
+Modules/GameShelfCommon/.git/

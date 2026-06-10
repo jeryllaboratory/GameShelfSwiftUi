@@ -1,0 +1,86 @@
+workflows:
+  ios-swiftui-debug:
+    name: iOS SwiftUI Debug
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+
+    environment:
+      xcode: latest
+      vars:
+        XCODE_PROJECT: "GameShelfSwiftUi.xcodeproj"
+        XCODE_SCHEME: "GameShelfSwiftUi"
+        SIMULATOR_DEVICE: "iPhone 17 Pro"
+
+    scripts:
+      - name: Show environment
+        script: |
+          xcodebuild -version
+          swift --version
+          pwd
+          xcrun simctl list devices available
+
+      - name: Install SwiftLint if needed
+        script: |
+          if ! command -v swiftlint >/dev/null 2>&1; then
+            brew install swiftlint
+          fi
+          swiftlint version
+
+      - name: Run SwiftLint
+        script: |
+          swiftlint lint --config .swiftlint.yml
+
+      - name: Run local package tests
+        script: |
+          for package in \
+            GameShelfCommon \
+            GameShelfCore \
+            GameShelfData \
+            GameShelfHomeFeature \
+            GameShelfDetailFeature \
+            GameShelfFavoriteFeature \
+            GameShelfAboutFeature
+          do
+            echo "Testing $package"
+            (cd Modules/$package && swift test)
+          done
+
+      - name: Resolve app package dependencies
+        script: |
+          xcodebuild \
+            -project "$XCODE_PROJECT" \
+            -scheme "$XCODE_SCHEME" \
+            -resolvePackageDependencies
+
+      - name: Run app unit tests with code coverage
+        script: |
+          rm -rf build/reports/GameShelfSwiftUi.xcresult
+          mkdir -p build/reports
+
+          xcodebuild \
+            -project "$XCODE_PROJECT" \
+            -scheme "$XCODE_SCHEME" \
+            -sdk iphonesimulator \
+            -destination "platform=iOS Simulator,name=$SIMULATOR_DEVICE" \
+            -enableCodeCoverage YES \
+            -resultBundlePath build/reports/GameShelfSwiftUi.xcresult \
+            clean build test \
+            -only-testing:GameShelfSwiftUiTests \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Show code coverage summary
+        script: |
+          xcrun xccov view --report --only-targets build/reports/GameShelfSwiftUi.xcresult || true
+
+    artifacts:
+      - build/reports/*.xcresult
+
+    publishing:
+      email:
+        recipients:
+          - jerylenas@gmail.com
+        notify:
+          success: true
+          failure: true

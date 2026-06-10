@@ -1,0 +1,57 @@
+excluded:
+  - GameShelfSwiftUi.xcodeproj
+  - GameShelfSwiftUi/Assets.xcassets
+  - GameShelfSwiftUi/Preview Content
+  - swiftui-docs
+  - DerivedData
+  - build
+  - .build
+  - .swiftpm
+  - Modules/GameShelfCommon/.build
+  - Modules/GameShelfCore/.build
+  - Modules/GameShelfData/.build
+  - Modules/GameShelfHomeFeature/.build
+  - Modules/GameShelfDetailFeature/.build
+  - Modules/GameShelfFavoriteFeature/.build
+  - Modules/GameShelfAboutFeature/.build
+  - Modules/GameShelfCommon/.swiftpm
+  - Modules/GameShelfCore/.swiftpm
+  - Modules/GameShelfData/.swiftpm
+  - Modules/GameShelfHomeFeature/.swiftpm
+  - Modules/GameShelfDetailFeature/.swiftpm
+  - Modules/GameShelfFavoriteFeature/.swiftpm
+  - Modules/GameShelfAboutFeature/.swiftpm
+
+opt_in_rules:
+  - empty_count
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+  - sorted_imports
+
+disabled_rules:
+  - trailing_whitespace
+  - todo
+
+line_length:
+  warning: 140
+  error: 180
+  ignores_comments: true
+  ignores_urls: true
+
+function_body_length:
+  warning: 80
+  error: 120
+
+type_body_length:
+  warning: 300
+  error: 500
+
+file_length:
+  warning: 500
+  error: 800
+
+identifier_name:
+  min_length:
+    warning: 2
+  excluded:
+    - id
